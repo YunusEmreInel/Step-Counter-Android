@@ -1,0 +1,38 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- Adım sensörü ve Recording API için (Android 10+ çalışma zamanında istenir) -->
+  <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+  <!-- Android 13+ bildirim izni; yalnızca kullanıcı canlı bildirimi seçerse istenir -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <!-- Canlı bildirim için health türünde foreground service -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+  <!-- Yeniden başlatmadan sonra kaydı ve bildirimi geri getirmek için -->
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+  <application>
+    <service
+      android:name="expo.modules.steptracker.tracking.StepNotificationService"
+      android:exported="false"
+      android:foregroundServiceType="health" />
+
+    <receiver
+      android:name="expo.modules.steptracker.tracking.NotificationActionReceiver"
+      android:exported="false" />
+
+    <receiver
+      android:name="expo.modules.steptracker.tracking.BootReceiver"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+        <action android:name="android.intent.action.TIME_SET" />
+        <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+      </intent-filter>
+    </receiver>
+
+    <receiver
+      android:name="expo.modules.steptracker.tracking.WeighReminderReceiver"
+      android:exported="false" />
+  </application>
+</manifest>

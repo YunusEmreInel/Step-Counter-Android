@@ -1,0 +1,10 @@
+<!-- Bildirim çubuğu ikonu: iki ayak izi (tek renk, sistem renklendirir) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+  android:width="24dp"
+  android:height="24dp"
+  android:viewportWidth="24"
+  android:viewportHeight="24">
+  <path
+    android:fillColor="#FFFFFFFF"
+    android:pathData="M8,2.5c1.7,0 3,2 3,4.5s-1,5 -2.2,5.8c-0.6,0.4 -1.6,0.4 -2.2,0C5.4,12 4.5,9.5 4.5,7C4.5,4.5 6.3,2.5 8,2.5zM6.2,14.3h3.9l-0.2,1.9c-0.1,1.1 -1,1.8 -2,1.8s-1.8,-0.8 -1.8,-1.8L6.2,14.3zM16,6.5c1.7,0 3.5,2 3.5,4.5s-0.9,5 -2.1,5.8c-0.6,0.4 -1.6,0.4 -2.2,0C14,16 13,13.5 13,11S14.3,6.5 16,6.5zM13.9,18.3h3.9l0.1,1.9c0,1 -0.8,1.8 -1.8,1.8s-1.9,-0.7 -2,-1.8L13.9,18.3z" />
+</vector>

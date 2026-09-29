@@ -1,0 +1,58 @@
+// Room'un kod üreticisi KSP ile çalışır. KSP sürümü Kotlin sürümüyle birebir uyumlu olmak zorunda;
+// Expo'nun kök Gradle eklentisi bu eşleşmeyi `kspVersion` olarak hesaplıyor, biz de onu kullanıyoruz.
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+  }
+  dependencies {
+    classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${rootProject.ext.kspVersion}")
+  }
+}
+
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+apply plugin: 'com.google.devtools.ksp'
+
+group = 'expo.modules.steptracker'
+version = '1.0.0'
+
+android {
+  namespace "expo.modules.steptracker"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+  }
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+def roomVersion = "2.7.2"
+def workVersion = "2.10.5"
+
+dependencies {
+  // Yerel veritabanı
+  implementation "androidx.room:room-runtime:$roomVersion"
+  implementation "androidx.room:room-ktx:$roomVersion"
+  ksp "androidx.room:room-compiler:$roomVersion"
+
+  // Zamanlanmış eşitleme
+  implementation "androidx.work:work-runtime-ktx:$workVersion"
+
+  // Recording API on mobile (hesapsız, cihaz üzerinde adım kaydı). Eski Google Fit API'leri DEĞİL.
+  implementation "com.google.android.gms:play-services-fitness:21.3.0"
+  implementation "com.google.android.gms:play-services-base:18.7.2"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2"
+
+  implementation "androidx.core:core-ktx:1.16.0"
+
+  testImplementation "junit:junit:4.13.2"
+}
